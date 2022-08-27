@@ -1,8 +1,26 @@
-    <div class="login-header">
-      <h1>Login</h1>
-    </div>
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+    />
+  </head>
+  <body></body>
+</html>
 
-  <form action="" method="post">
-    {% csrf_token %} {{ form.as_p }}
-    <input type="submit" value="login" />
-  </form>
+<div class="login-header">
+  <h1>Login</h1>
+</div>
+<div class="login-form">
+<form action="" method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <input type="submit" value="login" />
+</form>
+</div>

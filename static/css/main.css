@@ -9,3 +9,21 @@ html {
 .login-header {
     text-align: center;
 }
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    border-style: solid;
+    border: 1em;
+}
+
+.login-form p {
+    padding: .5rem;
+    display: inline-block;
+}
+
+
+.login-form > form > input{
+    display: block;
+    background-color: aliceblue;
+}
