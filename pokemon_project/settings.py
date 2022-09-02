@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     
     'users.apps.UsersConfig',
     'pokemon.apps.PokemonConfig',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [

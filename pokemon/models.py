@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.db import models
 from django.contrib.auth import get_user_model
 
@@ -14,6 +15,9 @@ class Pokemon(models.Model):
     
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = 'pokemon'
     
     
 class Type(models.Model):
