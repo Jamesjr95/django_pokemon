@@ -26,9 +26,22 @@
   <main>
     {% csrf_token %}
     <div id="app">
-      <ol>  
-     <li v-for="item in pokemon">[[ item.name ]]</li> 
-    </ol>
+      <div class="container mt-5 bt-5">
+        <div class="row">
+          <div class="col-lg-3" v-for="item in pokemon">
+            <div class="card" style="width: 18rem;">
+              <img :src="[[item.image_front]]" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">[[item.name]]</h5>
+                <h6 class="card-subtitle mb-2 text-muted">[[item.types]]</h6>
+                <p class="card-text"></p>
+                <a href="#" class="card-link">Catch</a>
+                <a href="#" class="card-link">Release</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
