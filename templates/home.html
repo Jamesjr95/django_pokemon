@@ -27,9 +27,10 @@
     {% csrf_token %}
     <div id="app">
       <div class="container mt-5 bt-5">
-        <div class="row d-flex justify-content-center">
-          <div class="col m-3" v-for="item in pokemon" >
-            <div class="card mx-auto primary bg-success bg-opacity-10 text-center"  style="width: 12rem;">
+        <div class="row d-flex justify-content-center" v-if="Object.keys(pokemon).length">
+          <div class="col m-3" v-for="item in pokemon" :key='item.id' :item="item">
+            <div class="card mx-auto primary bg-success bg-opacity-10 text-center" style="width: 12rem;"
+              @click="loadDetail(item)">
               <img :src="[[item.image_front]]" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title text-center text-capitalize">[[item.name]]</h5>
@@ -37,6 +38,25 @@
                 <br>
                 <a href="#" class="card-link text-center text-decoration-none mt-1">Catch</a>
                 <a href="#" class="card-link text-center text-decoration-none mt-1">Release</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container" v-if="Object.keys(detail).length">
+          <div class="row d-flex text-center">
+            <div class="col-12">
+              <h1>[[detail.name]]</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card text-center mx-auto" style="width: 18rem;">
+                <img :src="[[detail.image_front]]" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text"><small class="text-muted text-start"># [[detail.number]]</small></p>
+                  <p class="card-text m-0">Weight: [[detail.weight]] kg</p>
+                  <p class="card-text">Height: [[detail.height]] m</p>
+                </div>
               </div>
             </div>
           </div>

@@ -2,7 +2,8 @@ const vm = new Vue({
     el: '#app',
     delimiters: ['[[',']]'],
     data: {
-        pokemon: []
+        pokemon: [],
+        detail : []
     },
 
     methods: {
@@ -15,6 +16,19 @@ const vm = new Vue({
             }).catch(error => {
                 console.log(error);
             })
+        },
+        loadDetail: function(item){
+            axios({
+                method:'get',
+                url: `api/v1/pokemon/${item.id}`
+            }).then(response => {
+                this.detail = response.data
+                this.pokemon = []
+                console.log(response.data);
+            }).catch(error => {
+                console.log(error)
+            })
+
         }
     },
 
