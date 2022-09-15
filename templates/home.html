@@ -21,41 +21,58 @@
 
 
 <body>
-  {% include 'partials/_navbar.html' %}
 
   <main>
+    {% include 'partials/_navbar.html' %}
     {% csrf_token %}
     <div id="app">
-      <div class="container mt-5 bt-5">
-        <div class="row d-flex justify-content-center" v-if="Object.keys(pokemon).length">
-          <div class="col m-3" v-for="item in pokemon" :key='item.id' :item="item">
-            <div class="card mx-auto primary bg-success bg-opacity-10 text-center" style="width: 12rem;"
-              @click="loadDetail(item)">
-              <img :src="[[item.image_front]]" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title text-center text-capitalize">[[item.name]]</h5>
-                <span class="card-subtitle text-muted p-1" v-for="item in item.type_info">[[item.type]]</span>
+      <div class="container bt-5" v-if="Object.keys(pokemon).length">
+        <div class="row">
+          <div class="col m-4" v-for="item in pokemon" :key='item.id' :item="item">
+            <div class="card border-0 mx-auto rounded-3" style="width: 12rem;" @click="loadDetail(item)">
+              <img :src="[[item.image_front]]" class="card-img-top primary bg-success bg-opacity-10" alt="...">
+              <div class="card-body text-start">
+                <h6 class="card-subtitle text-muted mb-2">#[[item.number]]</h6>
+                <h5 class="card-title text-capitalize mb-1">[[item.name]]</h5>
+                <span class="card-subtitle me-2" v-for="item in item.type_info">[[item.type]]</span>
                 <br>
-                <a href="#" class="card-link text-center text-decoration-none mt-1">Catch</a>
-                <a href="#" class="card-link text-center text-decoration-none mt-1">Release</a>
+                <a href="#" class="card-link text-decoration-none mt-1">Catch</a>
+                <a href="#" class="card-link text-decoration-none mt-1">Release</a>
               </div>
             </div>
           </div>
         </div>
-        <div class="container" v-if="Object.keys(detail).length">
-          <div class="row d-flex text-center">
-            <div class="col-12">
-              <h1>[[detail.name]]</h1>
-            </div>
+      </div>
+      <div class="container vh-75" v-if="Object.keys(detail).length">
+        <div class="row text-center mb-5 mt-5">
+          <div class="col text-capitalize fs-2 fw-bolder">
+            [[detail.name]]
+            <span class="text-muted mx-2">#[[detail.number]]</span>
           </div>
-          <div class="row">
-            <div class="col-12">
-              <div class="card text-center mx-auto" style="width: 18rem;">
-                <img :src="[[detail.image_front]]" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text"><small class="text-muted text-start"># [[detail.number]]</small></p>
-                  <p class="card-text m-0">Weight: [[detail.weight]] kg</p>
-                  <p class="card-text">Height: [[detail.height]] m</p>
+        </div>
+        <div class="row align-items-center h-100">
+          <div class="col">
+            <div class="card text-start mx-auto d-md-none border-0 bg-success bg-opacity-10 rounded-3" style="width: 18rem;">
+              <img :src="[[detail.image_front]]" class="card-img-top" alt="...">
+              <div class="card-body bg-info rounded-3">
+                <p class="card-text m-0 fw-bold text-light">Weight</p>
+                <p class="card-text m-0 fw-bold text-dark">[[detail.weight]] kg</p>
+                <p class="card-text m-0 fw-bold text-light mt-2">Height</p>
+                <p class="card-text fw-bold text-dark">[[detail.height]] m</p>
+              </div>
+            </div>
+            <div class="card mx-auto mb-3 d-lg-block d-none d-md-none border-0" style="max-width: 540px;">
+              <div class="row">
+                <div class="col my-auto text-center">
+                  <img :src="[[detail.image_front]]" class="img-fluid rounded-start mx-auto" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body text-center bg-info rounded-3">
+                    <p class="card-text m-0 fw-bold text-light">Weight</p>
+                    <p class="card-text m-0 fw-bold text-dark">[[detail.weight]] kg</p>
+                    <p class="card-text m-0 fw-bold text-light mt-2">Height</p>
+                    <p class="card-text fw-bold text-dark">[[detail.height]] m</p>
+                  </div>
                 </div>
               </div>
             </div>
