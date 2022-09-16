@@ -20,31 +20,26 @@
 </html>
 
 
-<div class="container ">
-  <h1 class="text-center pt-3 pb-2 fw-normal">Login</h1>
-  <br>
-
-
-  <form action="" method="post" class="d-flex justify-content-center align-items-center">
-    {% csrf_token %}
-    <div class="card shadow w-50">
-      <div class="card-body">
-        <div class="mb-3">
-          <input type="text" class="form-control" name="username" placeholder="Username">
-        </div>
-        <div class="mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Passowrd">
-        </div>
-        <br>
-        <button type="submit" class="btn btn-primary mx-auto d-block">Submit</button>
+<div class="container vh-100 d-flex jusitfy-content-center text-center">
+  <main class="mx-auto my-auto w-25">
+    <img src="/static/images/icons8-pokedex-96.png" style="height: 40px;" alt="">
+    <h1 class="pt-3 pb-2">Login</h1>
+    <form action="" method="post" class="">
+      {% csrf_token %}
+      <div class="">
+        <input type="text" class="form-control p-3 rounded-top rounded-0" name="username" placeholder="Username">
       </div>
-
-      <div id="emailHelp" class="form-text p-2">Not Registered? Sign UP <a href="{% url 'users:signup' %}"
+      <div class="">
+        <input type="password" class="form-control p-3 border-top-0 rounded-bottom rounded-0" name="password"
+          placeholder="Password">
+      </div>
+      <br>
+      <button type="submit" class="btn btn-outline-dark">Submit</button>
+      <div id="emailHelp" class="form-text mt-4">Not Registered? Sign UP <a href="{% url 'users:signup' %}"
           class="text-decoration-none ">Here</a>...</div>
-    </div>
-  </form>
+    </form>
 </div>
-
+</main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

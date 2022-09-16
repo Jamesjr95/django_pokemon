@@ -32,10 +32,10 @@
             <div class="card border-0 mx-auto mb-3" style="width: 12rem;" @click="loadDetail(item)">
               <img :src="[[item.image_front]]" class="card-img-top " alt="...">
               <div class="card-body text-center">
-                <h6 class="card-subtitle text-muted mb-2 text-start"># [[item.number]]</h6>
+                <h6 class="card-subtitle text-muted mb-2"># [[item.number]]</h6>
                 <h5 class="card-title text-capitalize mb-1">[[item.name]]</h5>
                 <br>
-                <div class="py-2">
+                <div class="" v-if="currentUser.username">
                   <img src="/static/images/icons8-pokeball-100.png" alt="" style="height: 30px;">
                   <img src="/static/images/icons8-xbox-x-100.png" alt="" style="height: 30px;">
                 </div>
@@ -45,36 +45,37 @@
         </div>
 
         <div class="row text-center mb-5 mt-5" v-else>
-          <div class="col text-capitalize fs-2 fw-bolder">
+          <div class="col text-capitalize fs-2">
             [[detail.name]]
             <span class="text-muted mx-2">#[[detail.number]]</span>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <div class="card text-start mx-auto d-md-none border-0 bg-success bg-opacity-10 rounded-3"
+            <div class="card text-start mx-auto d-md-none border-0"
               style="width: 18rem;">
               <img :src="[[detail.image_front]]" class="card-img-top" alt="...">
-              <div class="card-body">
-                <p class="card-text m-0 fw-bold text-light">Weight</p>
-                <p class="card-text m-0 fw-bold text-dark">[[detail.weight]] kg</p>
-                <p class="card-text m-0 fw-bold text-light mt-2">Height</p>
-                <p class="card-text fw-bold text-dark">[[detail.height]] m</p>
+              <div class="card-body text-center">
+                <p class="card-text m-0 fw-bold">Weight</p>
+                <p class="card-text m-0 text-dark">[[detail.weight]] kg</p>
+                <p class="card-text m-0 fw-bold">Height</p>
+                <p class="card-text text-dark m-0">[[detail.height]] m</p>
+                <p class="card-text text-dark m-0 fw-bold">Types</p>
                 <span class="card-subtitle me-2" v-for="item in detail.type_info">[[item.type]]</span>
               </div>
             </div>
             <div class="card mx-auto mb-3 d-lg-block d-none d-md-none border-0" style="max-width: 540px;">
               <div class="row">
                 <div class="col my-auto text-center">
-                  <img :src="[[detail.image_front]]" class="img-fluid rounded-start mx-auto" alt="...">
+                  <img :src="[[detail.image_front]]" class="img-fluid rounded-start mx-auto" style="height: 270px;" alt="...">
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 d-flex align-items-center">
                   <div class="card-body text-center">
                     <p class="card-text m-0 fw-bold text-dark">Weight</p>
                     <p class="card-text m-0 text-dark">[[detail.weight]] kg</p>
-                    <p class="card-text m-0 fw-bold text-dark mt-2">Height</p>
-                    <p class="card-text text-dark">[[detail.height]] m</p>
-                    <p class="card-text text-dark fw-bold m-0">Types:</p>
+                    <p class="card-text m-0 fw-bold text-dark">Height</p>
+                    <p class="card-text m-0 text-dark">[[detail.height]] m</p>
+                    <p class="card-text text-dark fw-bold m-0">Types</p>
                     <span class="card-text me-2" v-for="item in detail.type_info">[[item.type]]</span>
                   </div>
                 </div>

@@ -3,7 +3,9 @@ const vm = new Vue({
     delimiters: ['[[',']]'],
     data: {
         pokemon: [],
-        detail : []
+        user: [],
+        detail : [],
+        currentUser: {}
     },
 
     methods: {
@@ -13,6 +15,16 @@ const vm = new Vue({
                 url:'api/v1/pokemon/'
             }).then(response => {
                 this.pokemon = response.data
+            }).catch(error => {
+                console.log(error);
+            })
+        },
+        loadUser: function(){
+            axios({
+                method: 'get',
+                url:'api/v1/current-user'
+            }).then(response => {
+                this.currentUser = response.data
             }).catch(error => {
                 console.log(error);
             })
@@ -37,6 +49,7 @@ const vm = new Vue({
     },
     created: function(){
         this.loadPokemon()
+        this.loadUser()
     }
 
 })
