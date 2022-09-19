@@ -43,6 +43,26 @@ const vm = new Vue({
 
         }
     },
+    computed: {
+        catchUncatch: function(pokemon){
+            if (!this.currentUser['caught'].includes(pokemon.id)) {
+                this.currentUser['caught'].push(pokemon.id)
+        } else {
+            this.currentUser['caught'].splice(this.currentUser.caught.indexOf(pokemon.id), 1)
+        }
+        axios({
+            method: 'patch',
+            url: 'api/v1/currentUser/',
+            headers: {
+                'X-CSRFToken': this.csrf_token
+            },
+            data: {
+                'caught': this.currentUser['caught']
+            }
+        }).catch( error =>{
+            console.log(error);
+        })
+    },
 
     mounted: function(){
         this.csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value
