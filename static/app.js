@@ -1,37 +1,38 @@
 const vm = new Vue({
     el: '#app',
-    delimiters: ['[[',']]'],
+    delimiters: ['[[', ']]'],
     data: {
+        csrfToken: '',
         pokemon: [],
         user: [],
-        detail : [],
-        currentUser: {}
+        detail: [],
+        currentUser: {},
     },
 
     methods: {
-        loadPokemon: function(){
+        loadPokemon: function () {
             axios({
-                method:'get',
-                url:'api/v1/pokemon/'
+                method: 'get',
+                url: 'api/v1/pokemon/'
             }).then(response => {
                 this.pokemon = response.data
             }).catch(error => {
                 console.log(error);
             })
         },
-        loadUser: function(){
+        loadUser: function () {
             axios({
                 method: 'get',
-                url:'api/v1/current-user'
+                url: 'api/v1/current-user'
             }).then(response => {
                 this.currentUser = response.data
             }).catch(error => {
                 console.log(error);
             })
         },
-        loadDetail: function(item){
+        loadDetail: function (item) {
             axios({
-                method:'get',
+                method: 'get',
                 url: `api/v1/pokemon/${item.id}`
             }).then(response => {
                 this.detail = response.data
@@ -41,33 +42,32 @@ const vm = new Vue({
                 console.log(error)
             })
 
-        }
-    },
-    computed: {
-        catchUncatch: function(pokemon){
+        },
+        catchUncatch : function (pokemon) {
             if (!this.currentUser['caught'].includes(pokemon.id)) {
                 this.currentUser['caught'].push(pokemon.id)
-        } else {
-            this.currentUser['caught'].splice(this.currentUser.caught.indexOf(pokemon.id), 1)
-        }
-        axios({
-            method: 'patch',
-            url: 'api/v1/currentUser/',
-            headers: {
-                'X-CSRFToken': this.csrf_token
-            },
-            data: {
-                'caught': this.currentUser['caught']
+            } else {
+                this.currentUser['caught'].splice(this.currentUser.caught.indexOf(pokemon.id), 1)
             }
-        }).catch( error =>{
-            console.log(error);
-        })
+            axios({
+                method: 'patch',
+                url: 'api/v1/current-user/',
+                headers: {
+                    'X-CSRFToken': this.csrfToken
+                },
+                data:{
+                    'caught': this.currentUser.caught
+                }
+            }).then(response => {
+                console.log(response);
+                this.loadUser()
+            })
+        }
     },
-
-    mounted: function(){
+    mounted: function () {
         this.csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value
     },
-    created: function(){
+    created: function () {
         this.loadPokemon()
         this.loadUser()
     }
