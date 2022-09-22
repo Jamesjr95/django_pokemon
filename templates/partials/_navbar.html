@@ -4,7 +4,7 @@
 <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
   <a href="" class="d-flex align-items-center text-dark text-decoration-none">
     <img src="/static/images/icons8-pokedex-96.png" alt="" style="height: 50px">
-    <span class="ms-1 fs-4">Pokedex</span>
+    <span class="ms-1 fs-4">Pok&eacutedex</span>
   </a>
 
   <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
@@ -16,7 +16,7 @@
     <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'login' %}">Login</a>
     <a class="py-2 text-dark text-decoration-none" href="{% url 'users:signup' %}">Sign Up</a>
     {% endif %}
-    <img v-if="currentUser.caught.length" src="/static/images/icons8-open-pokeball-100.png" style="height: 40px;" alt="">
+    <img v-if="currentUser.caught.length" src="/static/images/icons8-open-pokeball-100.png" @click='loadUserPokemon' style="height: 40px;" alt="">
   </nav>
 </div>
 </header>
