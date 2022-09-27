@@ -7,7 +7,6 @@ const vm = new Vue({
     user: [],
     detail: [],
     currentUser: {},
-    userPokemon: false,
   },
 
   methods: {

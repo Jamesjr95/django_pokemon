@@ -57,23 +57,22 @@
           </div>
         </div>
 
-        <div class="row mb-5 mt-5" v-if="Object.keys(detail).length">
-          <div class="col text-capitalize text-center fs-2">
-            [[detail.name]]
-            <span class="text-muted mx-2">#[[detail.number]]</span>
+        <div class="col text-capitalize text-center fs-2" v-if="Object.keys(detail).length">
+          [[detail.name]]
+          <span class="text-muted mx-2">#[[detail.number]]</span>
+        </div>
+        <div class="row flex-md-row flex-column justify-content-center align-items-center"
+          v-if="Object.keys(detail).length" style="height: 500px;">
+          <div class="col-4">
+            <img :src="detail.image_front" class="text-center img-fluid" style="height: 300px;" alt="...">
           </div>
-          <div class="row flex-md-row flex-column " style="height: 400px;">
-            <div class="col-6 ms-auto my-auto">
-              <img :src="detail.image_front" class="text-end" style="height: 300px;" alt="...">
-            </div>
-            <div class="col-4 text-start my-auto">
-              <p class="m-0 fw-bold">Weight</p>
-              <p class="m-0 text-dark">[[detail.weight]] kg</p>
-              <p class="m-0 fw-bold">Height</p>
-              <p class="text-dark m-0">[[detail.height]] m</p>
-              <p class="text-dark m-0 fw-bold">Types</p>
-              <span class="card-subtitle me-2" v-for="item in detail.type_info">[[item.type]]</span>
-            </div>
+          <div class="col-4 text-center my-auto">
+            <p class="m-0 fw-bold">Weight</p>
+            <p class="m-0 text-dark">[[detail.weight]] kg</p>
+            <p class="m-0 fw-bold">Height</p>
+            <p class="text-dark m-0">[[detail.height]] m</p>
+            <p class="text-dark m-0 fw-bold">Types</p>
+            <span class="card-subtitle me-2" v-for="item in detail.type_info">[[item.type]]</span>
           </div>
         </div>
       </div>
