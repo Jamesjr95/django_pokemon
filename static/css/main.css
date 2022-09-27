@@ -9,7 +9,7 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.card-hover:hover {
+.img-hover:hover {
     transform: scale(1.3);
     
 }

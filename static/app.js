@@ -42,7 +42,6 @@ const vm = new Vue({
       })
         .then((response) => {
           this.detail = response.data;
-          this.pokemon = [];
           console.log(response.data);
         })
         .catch((error) => {
@@ -74,14 +73,14 @@ const vm = new Vue({
     },
   },
   computed: {
-    loadUserPokemon: function () {
-      if (this.userPokemon === true) {
-        this.userPokemon = false;
-      } else {
-        this.userPokemon = true;
-      }
+    caughtPokemon: function () {
       return this.pokemon.filter((pokemon) => {
         return this.currentUser["caught"].includes(pokemon.id);
+      });
+    },
+    uncaughtPokemon: function () {
+      return this.pokemon.filter((pokemon) => {
+        return !this.currentUser["caught"].includes(pokemon.id);
       });
     },
   },

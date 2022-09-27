@@ -16,7 +16,6 @@
     <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'login' %}">Login</a>
     <a class="py-2 text-dark text-decoration-none" href="{% url 'users:signup' %}">Sign Up</a>
     {% endif %}
-    <img v-if="currentUser.caught.length" src="/static/images/icons8-open-pokeball-100.png" @click='loadUserPokemon' style="height: 40px;" alt="">
   </nav>
 </div>
 </header>

@@ -30,66 +30,50 @@
     <div id="app">
       <div class="container py-3">
         {% include 'partials/_navbar.html' %}
-        <div class="row mx-3 py-3" v-if="Object.keys(pokemon).length">
-          <div class="col me-1" v-for="item in pokemon" :key='item.id' :item="item">
-            <div class="card border-0 mx-auto mb-3" style="width: 12rem;">
-              <img :src="item.image_front" @click="loadDetail(item)" class="card-img-top card-hover" alt="...">
-              <div class="card-body text-center">
-                <h6 class="card-subtitle text-muted mb-2"># [[item.number]]</h6>
-                <h5 class="card-title text-capitalize mb-1">[[item.name]]</h5>
-                <br>
-                <div class="" v-if="currentUser.username">
-                  <img src="/static/images/icons8-pokeball-100.png" @click='catchUncatch(item)' alt="" style="height: 30px;">
-                  <img src="/static/images/icons8-xbox-x-100.png" alt="" style="height: 30px;">
-                </div>
-              </div>
+        <div class="row text-center mt-2" v-if="!Object.keys(detail).length">
+          <h1> Caught Pokemon </h1>
+          <div class="col-12 col-md-6 col-lg-4" v-for="item in caughtPokemon" :key='item.id' :item="item">
+            <img :src="item.image_front" @click='loadDetail(item)' class="img-hover" alt="">
+            <p>[[item.name]]</p>
+            <p class="text-muted m-0">#[[item.number]]</p>
+            <div class="" v-if="currentUser.username">
+              <img src="/static/images/icons8-pokeball-100.png" @click='catchUncatch(item)'
+                v-if="!currentUser.caught.includes(item.id)" class="img-hover" alt="" style="height: 30px;">
+              <img src="/static/images/icons8-xbox-x-100.png" @click='catchUncatch(item)' alt="" class="img-hover"
+                style="height: 30px;">
+            </div>
+          </div>
+        </div>
+        <div class="row text-center mt-2" v-if="!Object.keys(detail).length">
+          <h1>Uncaught Pokemon</h1>
+          <div class="col-12 col-md-6 col-lg-4" v-for="item in uncaughtPokemon" :key='item.id' :item="item">
+            <img :src="item.image_front" @click='loadDetail(item)' class="img-hover" alt="">
+            <p>[[item.name]]</p>
+            <p class="text-muted m-0">#[[item.number]]</p>
+            <div class="" v-if="currentUser.username">
+              <img src="/static/images/icons8-pokeball-100.png" @click='catchUncatch(item)' class="img-hover" alt=""
+                style="height: 30px;">
             </div>
           </div>
         </div>
 
-        <div class="row text-center mb-5 mt-5" v-if="Object.keys(detail).length">
-          <div class="col text-capitalize fs-2">
+        <div class="row mb-5 mt-5" v-if="Object.keys(detail).length">
+          <div class="col text-capitalize text-center fs-2">
             [[detail.name]]
             <span class="text-muted mx-2">#[[detail.number]]</span>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="card text-start mx-auto d-md-none border-0" style="width: 18rem;">
-              <img :src="detail.image_front" class="card-img-top" alt="...">
-              <div class="card-body text-center">
-                <p class="card-text m-0 fw-bold">Weight</p>
-                <p class="card-text m-0 text-dark">[[detail.weight]] kg</p>
-                <p class="card-text m-0 fw-bold">Height</p>
-                <p class="card-text text-dark m-0">[[detail.height]] m</p>
-                <p class="card-text text-dark m-0 fw-bold">Types</p>
-                <span class="card-subtitle me-2" v-for="item in detail.type_info">[[item.type]]</span>
-              </div>
+          <div class="row flex-md-row flex-column " style="height: 400px;">
+            <div class="col-6 ms-auto my-auto">
+              <img :src="detail.image_front" class="text-end" style="height: 300px;" alt="...">
             </div>
-            <div class="card mx-auto mb-3 d-lg-block d-none d-md-none border-0" style="max-width: 540px;">
-              <div class="row">
-                <div class="col my-auto text-center">
-                  <img :src="detail.image_front" class="img-fluid rounded-start mx-auto" style="height: 270px;"
-                    alt="...">
-                </div>
-                <div class="col-md-8 d-flex align-items-center">
-                  <div class="card-body text-center">
-                    <p class="card-text m-0 fw-bold text-dark">Weight</p>
-                    <p class="card-text m-0 text-dark">[[detail.weight]] kg</p>
-                    <p class="card-text m-0 fw-bold text-dark">Height</p>
-                    <p class="card-text m-0 text-dark">[[detail.height]] m</p>
-                    <p class="card-text text-dark fw-bold m-0">Types</p>
-                    <span class="card-text me-2" v-for="item in detail.type_info">[[item.type]]</span>
-                  </div>
-                </div>
-              </div>
+            <div class="col-4 text-start my-auto">
+              <p class="m-0 fw-bold">Weight</p>
+              <p class="m-0 text-dark">[[detail.weight]] kg</p>
+              <p class="m-0 fw-bold">Height</p>
+              <p class="text-dark m-0">[[detail.height]] m</p>
+              <p class="text-dark m-0 fw-bold">Types</p>
+              <span class="card-subtitle me-2" v-for="item in detail.type_info">[[item.type]]</span>
             </div>
-          </div>
-        </div>
-        <div class="row" v-if="userPokemon">
-          <div class="col" v-for="item in loadUserPokemon" :key="item.id">
-              [[item.name]]
-              <img :src="item.image_front" alt="">
           </div>
         </div>
       </div>
