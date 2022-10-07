@@ -22,3 +22,6 @@ class Pokemon(models.Model):
 class Type(models.Model):
     type = models.CharField(max_length=50)
     pokemon = models.ManyToManyField(Pokemon, related_name='types')
+    
+    def __str__(self):
+        return self.type
