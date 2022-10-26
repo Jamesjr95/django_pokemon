@@ -24,7 +24,6 @@ django_pokemon is an app that allows users to capture, release & see a detail vi
 - Pokemon
   - [ ] Create a Pokemon
   - [ ] Delete a Pokemon
-  - [x] Mark themselves as going to another users post
   - [x] Public homepage listing all Pokemon
   - [x] Detail page for each individual Pokemon
 
